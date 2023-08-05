@@ -25,7 +25,7 @@ public class FlowControlExercises {
             } else if (numbers.get(i) % 5 == 0) {
                 fizzbuzzlist.add("Buzz");
             } else {
-                fizzbuzzlist.add(numbers.get(i).toString(i));
+                fizzbuzzlist.add(numbers.get(i).toString());
 
             }
 
@@ -80,7 +80,7 @@ public class FlowControlExercises {
                 return ("December");
 
             default:
-                return ("out of range");
+                return ("Invalid month number");
         }
 
     }
