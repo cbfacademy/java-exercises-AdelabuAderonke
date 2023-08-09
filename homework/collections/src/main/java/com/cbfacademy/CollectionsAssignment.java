@@ -118,7 +118,6 @@ public class CollectionsAssignment {
     public static String mostFrequent(List<String> list) {
 
         // No nested loops or non-enhanced for-loops are allowed.
-        String word;
         String highestOccurence = "";
         int noOfOccurence;
         int max = 0;
@@ -126,8 +125,7 @@ public class CollectionsAssignment {
         Map<String, Integer> newMap = new HashMap<>();
         // You should solve this problem in two stages: First iterate through
         // the list to count occurrences of each String. Then iterate through
-        for (int i = 0; i < list.size(); i++) {
-            word = list.get(i);
+        for (String word : list) {
             noOfOccurence = Collections.frequency(list, word);
 
             newMap.put(word, noOfOccurence);
