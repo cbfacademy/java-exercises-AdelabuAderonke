@@ -22,7 +22,7 @@ public class CollectionsExercises {
         // - add 4 as the 3rd element of the list
         // - invoke the method element() on the list and print the result on the screen
         // - return the list
-        throw new RuntimeException("Not implemented");
+        return myList;
     }
 
     public Stack<Integer> useStack() {
