@@ -1,7 +1,12 @@
 package com.cbfacademy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import java.util.List;
 
 public class CollectionsAssignment {
@@ -11,12 +16,21 @@ public class CollectionsAssignment {
      * than the indicated integer. The remaining elements retain their original
      * ordering.
      *
-     * @param list   - the list of integers
+     * @param list     - the list of integers
      * @param minValue the minimum value to retain
      */
     public static void removeSmallInts(List<Integer> list, int minValue) {
         // Your solution must traverse the list from last to first element
         // removing any values less than minValue.
+        int value;
+        for (int i = (list.size() - 1); i >= 0; i--) {
+            value = list.get(i);
+            if (value < minValue) {
+                list.remove(i);
+            }
+
+        }
+
     }
 
     /**
@@ -27,8 +41,16 @@ public class CollectionsAssignment {
      * @return true if integers contains duplicates, false otherwise
      */
     public static boolean containsDuplicates(Collection<Integer> integers) {
-        // Your solution must not use any loops.
-        return false;
+        // Your solution must not use any loops
+        Set<Integer> collection = new HashSet<>(integers);
+        System.out.println(integers);
+        System.out.println(collection);
+        if (integers.size() > collection.size()) {
+            return true;
+        } else {
+            return false;
+
+        }
     }
 
     /**
@@ -44,11 +66,18 @@ public class CollectionsAssignment {
      * @param ints1 - the first collection
      * @param ints2 - the second collection
      * @return A sorted ArrayList containing the integers that appear in either
-     * collection.
+     *         collection.
      */
     public static ArrayList<Integer> inEither(Collection<Integer> ints1, Collection<Integer> ints2) {
         // This must be done with no loops.
-        return new ArrayList<Integer>();
+        Set<Integer> first = new HashSet<>(ints1);
+        Set<Integer> second = new HashSet<>(ints2);
+        first.addAll(second);
+        //
+        // return
+        ArrayList<Integer> sortList = new ArrayList<Integer>(first);
+        Collections.sort(sortList);
+        return sortList;
     }
 
     /**
@@ -62,11 +91,18 @@ public class CollectionsAssignment {
      * @param ints1 - the first collection
      * @param ints2 - the second collection
      * @return An ArrayList containing the integers that appear in both
-     * collections.
+     *         collections.
      */
     public static ArrayList<Integer> inBoth(Collection<Integer> ints1, Collection<Integer> ints2) {
         // This must be done with no loops.
-        return new ArrayList<>();
+        Set<Integer> first = new HashSet<>(ints1);
+        Set<Integer> second = new HashSet<>(ints2);
+
+        Set<Integer> intersect = new HashSet(first);
+        intersect.retainAll(second);
+        ArrayList sortedList = new ArrayList<>(intersect);
+        Collections.sort(sortedList);
+        return sortedList;
     }
 
     /**
@@ -80,12 +116,32 @@ public class CollectionsAssignment {
      * @return the most frequently occurring String
      */
     public static String mostFrequent(List<String> list) {
+
+        // No nested loops or non-enhanced for-loops are allowed.
+        String highestOccurence = "";
+        int noOfOccurence;
+        int max = 0;
+        int count = 0;
+        Map<String, Integer> newMap = new HashMap<>();
         // You should solve this problem in two stages: First iterate through
         // the list to count occurrences of each String. Then iterate through
+        for (String word : list) {
+            noOfOccurence = Collections.frequency(list, word);
+
+            newMap.put(word, noOfOccurence);
+        }
         // your counts to find the largest. You'll need a collection that allows
         // you to store a mapping from Strings to counts.
-        // No nested loops or non-enhanced for-loops are allowed.
-        return "";
+
+        for (String a : newMap.keySet()) {
+            count = newMap.get(a);
+            if (count > max) {
+                max = count;
+                highestOccurence = a;
+            }
+        }
+
+        return highestOccurence;
     }
 
     public static String getName() {
